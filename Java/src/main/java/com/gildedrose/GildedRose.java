@@ -7,10 +7,10 @@ class GildedRose {
         this.items = items;
     }
 
-
     public void updateQuality() {
         for (Item item : items) {
-            item = ItemUpdater.update(item);
+            ItemUpdater itemUpdater = ItemUpdaterFactory.build(item);
+            itemUpdater.update(item);
         }
     }
 }

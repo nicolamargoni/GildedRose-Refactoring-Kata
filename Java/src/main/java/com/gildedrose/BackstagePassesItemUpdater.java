@@ -1,24 +1,35 @@
 package com.gildedrose;
 
-public class BackstagePassesItemUpdater {
+public class BackstagePassesItemUpdater extends ItemUpdater {
 
-    public static Item update(Item item) {
-        item.sellIn--;
+    @Override
+    public void update(Item item) {
+        decrementSellIn(item);
 
-        if (item.sellIn > 10) {
-            item.quality++;
-        } else if (item.sellIn <= 10 && item.sellIn > 5) {
-            item.quality += 2;
-        } else if (item.sellIn <= 5 && item.sellIn >= 0) {
-            item.quality += 3;
+        if (isSellInGreatherThan10(item.sellIn)) {
+            incrementQuality(item);
+        } else if (isSellInBetween10and6(item.sellIn)) {
+            incrementQuality(item,2);
+        } else if (isSellInBetween5and0(item.sellIn)) {
+            incrementQuality(item,3);
         } else {
             item.quality = 0;
         }
 
-        if(item.quality>50){
-            item.quality=50;
-        }
-
-        return item;
+        checkMaxAdmissibleIncrementQualityAndFixElse(item);
     }
+
+    private static boolean isSellInGreatherThan10(int sellIn) {
+        return sellIn > 10;
+    }
+
+    private static boolean isSellInBetween10and6(int sellIn) {
+        return sellIn <= 10 && sellIn > 5;
+    }
+
+    private static boolean isSellInBetween5and0(int sellIn) {
+        return sellIn <= 5 && sellIn >= 0;
+    }
+
+
 }

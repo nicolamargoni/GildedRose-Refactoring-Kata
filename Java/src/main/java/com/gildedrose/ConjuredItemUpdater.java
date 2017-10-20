@@ -1,20 +1,17 @@
 package com.gildedrose;
 
-public class ConjuredItemUpdater {
+public class ConjuredItemUpdater extends ItemUpdater {
 
-    public static Item update(Item item) {
-        item.sellIn--;
+    @Override
+    public void update(Item item) {
+        decrementSellIn(item);
 
-        if (item.sellIn<0) {
-            item.quality-=4;
+        if (isSellDatePassed(item.sellIn)) {
+            decrementQuality(item, 4);
         } else {
-            item.quality-=2;
+            decrementQuality(item, 2);
         }
 
-        if(item.quality<0){
-            item.quality=0;
-        }
-
-        return item;
+        checkMinAdmissibleDecrementQualityAndFixElse(item);
     }
 }

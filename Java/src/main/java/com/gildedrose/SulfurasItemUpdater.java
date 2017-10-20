@@ -1,9 +1,9 @@
 package com.gildedrose;
 
-public class SulfurasItemUpdater {
+public class SulfurasItemUpdater extends ItemUpdater {
 
-    public static Item update(Item item) {
+    @Override
+    public void update(Item item) {
         // do nothing
-        return item;
     }
 }

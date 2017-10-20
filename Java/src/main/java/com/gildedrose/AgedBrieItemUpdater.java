@@ -1,15 +1,11 @@
 package com.gildedrose;
 
-public class AgedBrieItemUpdater{
+public class AgedBrieItemUpdater extends ItemUpdater {
 
-    public static Item update(Item item) {
-        item.sellIn--;
-        item.quality++;
-
-        if(item.quality>50){
-            item.quality=50;
-        }
-
-        return item;
+    @Override
+    public void update(Item item) {
+        decrementSellIn(item);
+        incrementQuality(item);
+        checkMaxAdmissibleIncrementQualityAndFixElse(item);
     }
 }
