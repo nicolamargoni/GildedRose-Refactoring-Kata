@@ -2,6 +2,9 @@ package com.gildedrose;
 
 public class ItemUpdater {
 
+    public static int MAX_ADMISSIBLE_QUALITY_INCREMENTED_VALUE = 50;
+    public static int MIN_ADMISSIBLE_QUALITY_INCREMENTED_VALUE = 50;
+
     public void update(Item item) {
         decrementSellIn(item);
 
@@ -15,14 +18,14 @@ public class ItemUpdater {
     }
 
     public static void checkMaxAdmissibleIncrementQualityAndFixElse(Item item) {
-        if (item.quality > 50) {
-            item.quality = 50;
+        if (item.quality > MAX_ADMISSIBLE_QUALITY_INCREMENTED_VALUE) {
+            item.quality = MAX_ADMISSIBLE_QUALITY_INCREMENTED_VALUE;
         }
     }
 
     public static void checkMinAdmissibleDecrementQualityAndFixElse(Item item) {
-        if (item.quality < 0) {
-            item.quality = 0;
+        if (item.quality < MIN_ADMISSIBLE_QUALITY_INCREMENTED_VALUE) {
+            item.quality = MIN_ADMISSIBLE_QUALITY_INCREMENTED_VALUE;
         }
     }
 
